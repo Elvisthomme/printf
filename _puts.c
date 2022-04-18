@@ -1,14 +1,25 @@
 #include "main.h"
 
 /**
-  * _puts - print a string
+  * _puts_count - print a string and count the printed charaters
   * @s: the string to print
+  * @c the number of printed characters
   */
-void _puts(char *s)
+int _puts_count(char *s, int c)
 {
 	if (*s)
 	{
 		_putchar(*s);
-		_puts((s + 1));
+		return (_puts_count((s + 1), (c + 1)));
 	}
+	return (c);
+}
+
+/**
+  * _puts - print a string
+  * @s: the string to print
+  */
+int _puts(char *s)
+{
+	return (_puts_count(s, 0));
 }
