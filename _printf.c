@@ -1,4 +1,35 @@
-
+#include "main.h"
+#include <stdarg.h>
+#include <stdio.h>
+/**
+ * _printf - function used for printing any value
+ * @format: Value to print along with specifiers
+ * Return: Returns the number of characters printed
+ */
+int _printf(const char *format, ...)
+{
+int i = 0, count = 0;
+va_list list;
+int *pointer_i = &i;
+int *pointer_count = &count;
+va_start(list, format);
+if (format)
+{
+while (format[i])
+{
+if (format[i] == '%')
+{
+select_command(format, list, pointer_i, pointer_count);
+}
+else
+{
+count += _putchar(format[i]);
+++i;
+}
+}
+}
+return (count);
+}
 
 
 int _printf(const char *format, ...);
