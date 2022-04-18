@@ -19,7 +19,7 @@ while (format[i])
 {
 if (format[i] == '%')
 {
-select_command(format, list, pointer_i, pointer_count);
+check_for_modifiers(format, list, pointer_i, pointer_count);
 }
 else
 {
