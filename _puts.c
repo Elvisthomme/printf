@@ -3,7 +3,8 @@
 /**
   * _puts_count - print a string and count the printed charaters
   * @s: the string to print
-  * @c the number of printed characters
+  * @c: the number of printed characters
+  * Return: the number of printed characters
   */
 int _puts_count(char *s, int c)
 {
@@ -18,6 +19,7 @@ int _puts_count(char *s, int c)
 /**
   * _puts - print a string
   * @s: the string to print
+  * Return: the number of printed characters
   */
 int _puts(char *s)
 {
