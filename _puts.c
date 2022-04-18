@@ -6,22 +6,14 @@
   * @c: the number of printed characters
   * Return: the number of printed characters
   */
-int _puts_count(char *s, int c)
-{
-	if (*s)
-	{
-		_putchar(*s);
-		return (_puts_count((s + 1), (c + 1)));
-	}
-	return (c);
-}
-
-/**
-  * _puts - print a string
-  * @s: the string to print
-  * Return: the number of printed characters
-  */
 int _puts(char *s)
 {
-	return (_puts_count(s, 0));
+	  int c = 0;
+
+	while (*s != '\0')
+	{
+		c += _putchar(*s);
+		s++;
+	}
+	return (c);
 }
