@@ -6,7 +6,7 @@
   * @c: the number of printed characters
   * Return: the number of printed characters
   */
-int _puts_count(char *s, int c)
+int _puts_count(const char *s, int c)
 {
 	if (*s)
 	{
@@ -21,7 +21,7 @@ int _puts_count(char *s, int c)
   * @s: the string to print
   * Return: the number of printed characters
   */
-int _puts(char *s)
+int _puts(const char *s)
 {
 	return (_puts_count(s, 0));
 }
