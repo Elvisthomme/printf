@@ -19,7 +19,7 @@ is NULL or if the functions encounters any errors, it returns -1.
 
 FORMAT OF THE STRING
 
-The format string can contain any characters , just like a regular string, 
+The format string can contain any characters , just like a regular string,
 in double quotes, which will be printed as it is. For example, _printf(\(dqHello\(dq) will print: Hello.
 However, this format string can contain conversion specifiers
 These start with a %, and are followed with a character
@@ -49,5 +49,5 @@ _printf uses a custom character printing function called _putchar, that uses the
 When _putchar is called inside _printf, the character is stored inside the buffer and the function moves to the next character,
 until _printf calls _putchar(-1)
 
-AUTHORS 
+AUTHORS
 Elvis Blondo THOMME NGUEFANG  & Francis Tettey
