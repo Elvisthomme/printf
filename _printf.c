@@ -19,6 +19,7 @@ int check_for_modifier(const char *format)
 				case 'd':
 				case 'i':
 				case 'o':
+				case 'S':
 				case 's':
 				case 'u':
 				case 'X':
@@ -33,6 +34,7 @@ int check_for_modifier(const char *format)
 						case 'd':
 						case 'i':
 						case 'o':
+						case 'S':
 						case 's':
 						case 'u':
 						case 'X':
@@ -84,6 +86,11 @@ int _printf_count(const char *format, int count, va_list ap)
 			_putchar(va_arg(ap, int));
 			return (_printf_count((format + check + 1),
 						count + check, ap));
+		case 'S':
+			str = va_arg(ap, char *);
+			i = _puts_special(str);
+			return (_printf_count((format + check + 1),
+						count + check + i - 1, ap));
 		case 's':
 			str = va_arg(ap, char *);
 			i = _puts_count(str, 0);

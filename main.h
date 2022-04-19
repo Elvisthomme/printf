@@ -22,4 +22,5 @@ int check_for_modifier(const char *format);
 int _puts_count(const char *, int);
 int print_number(int);
 int print_in_base(unsigned long int, char);
+int _puts_special(const char *);
 #endif

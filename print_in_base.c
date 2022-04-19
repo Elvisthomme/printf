@@ -9,8 +9,7 @@
 int print_in_base(unsigned long int n, char c)
 {
 	unsigned long int positive_value, b;
-	long int number_of_digit = 1;
-	long int divider, i, j, p, count = 0;
+	long int number_of_digit = 1, divider, i, j, p, count = 0;
 	char x16[] = {'a', 'b', 'c', 'd', 'e', 'f'};
 	char X16[] = {'A', 'B', 'C', 'D', 'E', 'F'};
 
@@ -29,8 +28,7 @@ int print_in_base(unsigned long int n, char c)
 		case 'x':
 			b = 16;
 	}
-	positive_value = n;
-	/* Count the number of digit */
+	positive_value = n;/* Count the number of digit */
 	while (positive_value > b - 1)
 	{
 		number_of_digit++;
@@ -62,7 +60,6 @@ int print_in_base(unsigned long int n, char c)
 				}
 			else
 				count += _putchar('0' + n / divider);
-
 		/* get the part of the number that we have not printed*/
 		n -= (n / divider) * divider;
 	}
