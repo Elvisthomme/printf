@@ -18,7 +18,11 @@ int check_for_modifier(const char *format)
 				case 'c':
 				case 'd':
 				case 'i':
+				case 'o':
 				case 's':
+				case 'u':
+				case 'X':
+				case 'x':
 					return (i + 1);
 				case '%':
 					if (*(format + i + 2))
@@ -26,9 +30,13 @@ int check_for_modifier(const char *format)
 					{
 						case 'b':
 						case 'c':
-						case 'd':	
+						case 'd':
 						case 'i':
+						case 'o':
 						case 's':
+						case 'u':
+						case 'X':
+						case 'x':
 							return (i + 2);
 						default:
 							return (i + 1);
@@ -64,7 +72,12 @@ int _printf_count(const char *format, int count, va_list ap)
 	switch (*(format + check))
 	{
 		case 'b':
-			i = print_binary(va_arg(ap, unsigned int));
+		case 'o':
+		case 'u':
+		case 'x':
+		case 'X':
+			i = print_in_base(va_arg(ap, unsigned int),
+					*(format + check));
 			return (_printf_count((format + check + 1),
 						count + check + i - 1, ap));
 		case 'c':
