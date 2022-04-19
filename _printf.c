@@ -100,10 +100,9 @@ int _printf_count(const char *format, int count, va_list ap)
 						count + check + i - 1, ap));
 		default:/*here the modifier is not a char nor a string*/
 			return (_printf_count((format + check),
-						count + check, ap));
-	}
+	                                       count + check, ap));
 }
-
+}
 /**
   * _printf - produce output according to a format
   * @format: a list of type of arguments passed to the function
@@ -112,12 +111,12 @@ int _printf_count(const char *format, int count, va_list ap)
   */
 int _printf(const char *format, ...)
 {
-	va_list ap;
-	int count;
-
-	va_start(ap, format);
-	count = _printf_count(format, 0, ap);
-	va_end(ap);
-	return (count);
+va_list ap;
+int count;
+va_start(ap, format);
+count = _printf_count(format, 0, ap);
+va_end(ap);
+_putchar(-1);
+return (count);
 
 }
