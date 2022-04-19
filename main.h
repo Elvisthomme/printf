@@ -20,4 +20,5 @@ int _puts(const char *);
 void check_for_modifiers(const char *, va_list, int *, int *);
 int check_for_modifier(const char *format);
 int _puts_count(const char *, int);
+int print_number(int);
 #endif

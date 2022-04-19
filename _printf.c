@@ -74,7 +74,11 @@ int _printf_count(const char *format, int count, va_list ap)
 			_putchar('%');
 			return (_printf_count((format + check + 1),
 						count + check, ap));
-
+		case 'i':
+		case 'd':
+			i = print_number(va_arg(ap, int));
+			return (_printf_count((format + check + 1),
+						count + check + i - 1, ap));
 		default:/*here the modifier is not a char nor a string*/
 			return (_printf_count((format + check),
 						count + check, ap));
