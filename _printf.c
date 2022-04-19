@@ -28,6 +28,8 @@ int check_for_modifier(const char *format)
 						case 'd':
 						case 'i':
 							return (i + 2);
+						default:
+							return (i + 1);
 					}
 			}
 		i++;
