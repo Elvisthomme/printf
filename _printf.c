@@ -11,20 +11,24 @@ int check_for_modifier(const char *format)
 
 	while (*(format + i))
 	{
-		if (*(format + i) == '%')
+		if (*(format + i) == '%' && *(format + i + 1))
 			switch (*(format + i + 1))
 			{
-				case '%':
-					if (*(format + i + 2) == 'c'
-					|| *(format + i + 2) == 's'
-					|| *(format + i + 2) == 'd'
-					|| *(format + i + 2) == 'i')
-						return (i + 2);
 				case 'c':
 				case 's':
 				case 'd':
 				case 'i':
 					return (i + 1);
+				case '%':
+					if (*(format + i + 2))
+					switch (*(format + i + 2))
+					{
+						case 'c':
+						case 's':
+						case 'd':
+						case 'i':
+							return (i + 2);
+					}
 			}
 		i++;
 	}
