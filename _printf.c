@@ -60,6 +60,7 @@ int _printf_count(const char *format, int count, va_list ap)
 	int check, i;
 
 	if (!format)
+		_putchar(-1);
 		return (count);
 
 	check = check_for_modifier(format);
