@@ -116,7 +116,6 @@ int count;
 va_start(ap, format);
 count = _printf_count(format, 0, ap);
 va_end(ap);
-_putchar(-1);
 return (count);
 
 }
