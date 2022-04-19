@@ -108,7 +108,7 @@ int _printf_count(const char *format, int count, va_list ap)
 		default:/*here the modifier is not a char nor a string*/
 			return (_printf_count((format + check),
 	                                       count + check, ap));
-}
+	}
 }
 /**
   * _printf - produce output according to a format
