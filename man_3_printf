@@ -1,0 +1,44 @@
+NAME
+_printf
+
+SYNOPSIS
+#include "main.h"
+int _printf(const char *format, ...)
+int _printf_count(const char *format, int count, va_list ap)
+
+DESCRIPTION
+
+The function _printf is a variadic function that produces a string according to a
+.I format
+and prints it to the standard output, much like the C standard library function printf.
+it can receive a variable number of arguments.
+This function has been created for an ALX SE group project.
+
+On success, _printf returns the number of characters printed. If format
+is NULL or if the functions encounters any errors, it returns -1.
+
+FORMAT OF THE STRING
+
+The format string can contain any characters , just like a regular string, 
+in double quotes, which will be printed as it is. For example, _printf(\(dqHello\(dq) will print: Hello.
+However, this format string can contain conversion specifiers
+These start with a %, and are followed with a character
+
+CONVERSION SPECIFIERS
+
+Special characters like a new line are escaped, for example _printf(\n) will print a new line.
+> i, d
+- Both these specifiers are for int arguments.
+They conver the variable to decimal number, positive or negative.
+
+>c
+- Prints a single character.
+
+>s
+- Prints an entire string.
+
+>u
+- Prints an unsigned int.
+
+>x, X
+- Respectively print a number in lowercase and uppercase hexadecimal
