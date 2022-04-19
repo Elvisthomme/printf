@@ -8,10 +8,11 @@
   */
 int _puts_count(const char *s, int c)
 {
-	if (*s)
+
+	while (*s != '\0')
 	{
-		_putchar(*s);
-		return (_puts_count((s + 1), (c + 1)));
+		c += _putchar(*s);
+		s++;
 	}
 	return (c);
 }
