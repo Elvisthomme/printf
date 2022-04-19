@@ -42,3 +42,12 @@ They conver the variable to decimal number, positive or negative.
 
 >x, X
 - Respectively print a number in lowercase and uppercase hexadecimal
+>0,b
+
+NOTES
+_printf uses a custom character printing function called _putchar, that uses the system call write().
+When _putchar is called inside _printf, the character is stored inside the buffer and the function moves to the next character,
+until _printf calls _putchar(-1)
+
+AUTHORS 
+Elvis Blondo THOMME NGUEFANG  & Francis Tettey
