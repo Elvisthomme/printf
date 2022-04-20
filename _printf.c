@@ -44,57 +44,46 @@ int check_for_modifier(const char *format)
   */
 int _printf_count(const char *format, int count, va_list ap)
 {
-	char *str;
-	int check, i;
+	char c;
+	int i, j;
 
-	if (!format)
-		return (count);
-
-	check = check_for_modifier(format);
-
-	if (check == -1)/*We haven't found specifier*/
+	j = check_for_modifier(format);
+	if (j == -1)/*We haven't found specifier*/
 		return (_puts_count(format, count));
-	if (check >= 2)/*The string doesn't start whit he specifier*/
-		write(1, format, check - 1);
-
-	switch (*(format + check))
+	if (j >= 2)/*The string doesn't start whit he specifier*/
+		write(1, format, j - 1);
+	c = *(format + j);
+	if (c == 'b' || c == 'o' || c == 'u' || c == 'x' || c == 'X')
 	{
-		case 'b':
-		case 'o':
-		case 'u':
-		case 'x':
-		case 'X':
-			i = print_in_base(va_arg(ap, unsigned int),
-					*(format + check));
-			return (_printf_count((format + check + 1),
-						count + check + i - 1, ap));
-		case 'c':
-			_putchar(va_arg(ap, int));
-			return (_printf_count((format + check + 1),
-						count + check, ap));
-		case 'S':
-			str = va_arg(ap, char *);
-			i = _puts_special(str);
-			return (_printf_count((format + check + 1),
-						count + check + i - 1, ap));
-		case 's':
-			str = va_arg(ap, char *);
-			i = _puts_count(str, 0);
-			return (_printf_count((format + check + 1),
-						count + check + i - 1, ap));
-		case '%':
-			_putchar('%');
-			return (_printf_count((format + check + 1),
-						count + check, ap));
-		case 'i':
-		case 'd':
-			i = print_number(va_arg(ap, int));
-			return (_printf_count((format + check + 1),
-						count + check + i - 1, ap));
-		default:/*here the modifier is not a char nor a string*/
-			return (_printf_count((format + check),
-				count + check, ap));
+		i = print_in_base(va_arg(ap, unsigned int), *(format + j));
+		return (_printf_count(format + j + 1, count + j + i - 1, ap));
 	}
+	if (c == 'c')
+	{
+		_putchar(va_arg(ap, int));
+		return (_printf_count((format + j + 1), count + j, ap));
+	}
+	if (c == 'S')
+	{
+		i = _puts_special(va_arg(ap, char *));
+		return (_printf_count(format + j + 1, count + j + i - 1, ap));
+	}
+	if (c == 's')
+	{
+		i = _puts(va_arg(ap, char *));
+		return (_printf_count(format + j + 1, count + j + i - 1, ap));
+	}
+	if (c == '%')
+	{
+		_putchar('%');
+		return (_printf_count(format + j + 1, count + j, ap));
+	}
+	if (c == 'i' || c == 'd')
+	{
+		i = print_number(va_arg(ap, int));
+		return (_printf_count(format + j + 1, count + j + i - 1, ap));
+	}
+	return (_printf_count((format + j), count + j, ap));
 }
 /**
   * _printf - produce output according to a format
@@ -106,8 +95,8 @@ int _printf(const char *format, ...)
 {
 	va_list ap;
 	int count;
-	va_start(ap, format);
 
+	va_start(ap, format);
 	if (!format || (*(format + 0) == '%' && !*(format + 1)))
 		return (0);
 	count = _printf_count(format, 0, ap);
