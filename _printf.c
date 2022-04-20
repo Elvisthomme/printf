@@ -8,42 +8,28 @@
 int check_for_modifier(const char *format)
 {
 	int i = 0;
+	char c;
 
 	while (*(format + i))
 	{
-		if (*(format + i) == '%' && *(format + i + 1))
-			switch (*(format + i + 1))
+		if (*(format + i) == '%')
+		{
+			c = *(format + i + 1);
+			if (c == 'b' || c == 'c' || c == 'd' || c == 'i'
+			|| c == 'o' || c == 'S' || c == 's' || c == 'u'
+			|| c == 'X' || c == 'x')
+				return (i + 1);
+			if (c == '%')
 			{
-				case 'b':
-				case 'c':
-				case 'd':
-				case 'i':
-				case 'o':
-				case 'S':
-				case 's':
-				case 'u':
-				case 'X':
-				case 'x':
+				c = *(format + i + 2);
+				if (c == 'b' || c == 'c' || c == 'd' || c == 'i'
+				|| c == 'o' || c == 'S' || c == 's' || c == 'u'
+				|| c == 'X' || c == 'x')
+					return (i + 2);
+				else
 					return (i + 1);
-				case '%':
-					if (*(format + i + 2))
-					switch (*(format + i + 2))
-					{
-						case 'b':
-						case 'c':
-						case 'd':
-						case 'i':
-						case 'o':
-						case 'S':
-						case 's':
-						case 'u':
-						case 'X':
-						case 'x':
-							return (i + 2);
-						default:
-							return (i + 1);
-					}
 			}
+		}
 		i++;
 	}
 	return (-1);
@@ -107,7 +93,7 @@ int _printf_count(const char *format, int count, va_list ap)
 						count + check + i - 1, ap));
 		default:/*here the modifier is not a char nor a string*/
 			return (_printf_count((format + check),
-					      count + check, ap));
+				count + check, ap));
 	}
 }
 /**
@@ -118,11 +104,14 @@ int _printf_count(const char *format, int count, va_list ap)
   */
 int _printf(const char *format, ...)
 {
-va_list ap;
-int count;
-va_start(ap, format);
-count = _printf_count(format, 0, ap);
-va_end(ap);
-return (count);
+	va_list ap;
+	int count;
+	va_start(ap, format);
+
+	if (!format || (*(format + 0) == '%' && !*(format + 1)))
+		return (0);
+	count = _printf_count(format, 0, ap);
+	va_end(ap);
+	return (count);
 
 }

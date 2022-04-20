@@ -23,5 +23,5 @@ int _puts_count(const char *, int);
 int print_number(int);
 int print_in_base(unsigned long int, char);
 int _puts_special(const char *);
-int print_num_up_to_10(int, int, char);
+int print_num_up_to_10(unsigned int, int, char);
 #endif

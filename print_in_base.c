@@ -57,7 +57,7 @@ int print_in_base(unsigned long int n, char c)
   * @c: the base
   * Return: the number of printed digit
   */
-int print_num_up_to_10(int n, int d, char c)
+int print_num_up_to_10(unsigned int n, int d, char c)
 {
 	int count = 0, p;
 	char x16[] = {'a', 'b', 'c', 'd', 'e', 'f'};
