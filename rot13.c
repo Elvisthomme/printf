@@ -12,11 +12,8 @@ int print_rot13(char *str)
 	{
 		if (*(str + i) >= 'A' && *(str + i) <= 'Z')
 			*(str + i) = ((*(str + i) - 65 + 13) % 26) + 65;
-		while (*(str + i) >= 'a' && *(str + i) <= 'z')
-		{
+		if (*(str + i) >= 'a' && *(str + i) <= 'z')
 			*(str + i) = ((*(str + i) - 97 + 13) % 26) + 97;
-			break;
-		}
 		i++;
 	}
 	return (_puts(str));

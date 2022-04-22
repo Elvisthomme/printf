@@ -44,7 +44,10 @@ int _puts_special(const char *s)
 			_putchar('x');
 			if (*s < 16)
 				_putchar('0');
-			print_in_base((unsigned long int) *s, 'X');
+			if (*s == 10)
+				_putchar('A');
+			else
+				print_in_base((unsigned long int) *s, 'X');
 			c += 4;
 		}
 		else
