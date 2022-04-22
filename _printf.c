@@ -55,7 +55,8 @@ int _printf_count(const char *format, int count, va_list ap)
 		write(1, format, j - 1);
 	c = *(format + j);
 	if (c == 'b' || c == 'o' || c == 'u' || c == 'x' || c == 'X'
-	|| c == 'S' || c == 's' || c == '%' || c == 'c')
+	|| c == 'S' || c == 's' || c == '%' || c == 'c' || c == 'i'
+	|| c == 'd')
 	{
 		if (c == 'c')
 			i = _putchar(va_arg(ap, int));
