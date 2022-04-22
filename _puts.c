@@ -8,13 +8,16 @@
   */
 int _puts_count(const char *s, int c)
 {
-
-	while (*s != '\0')
+	if (s)
 	{
-		c += _putchar(*s);
-		s++;
+		while (*s != '\0')
+		{
+			c += _putchar(*s);
+			s++;
+		}
+		return (c);
 	}
-	return (c);
+	return (_puts("(null)"));
 }
 
 /**
