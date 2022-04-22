@@ -69,6 +69,8 @@ int _printf_count(const char *format, int count, va_list ap)
 			i = print_number(va_arg(ap, int));
 		else if (c == 'r')
 			i = print_rev(va_arg(ap, char *));
+		else if (c == 'R')
+			i = print_rot13(va_arg(ap, char *));
 		else
 			i = print_in_base(va_arg(ap, unsigned int), *(format + j));
 		return (_printf_count(format + j + 1, count + j + i - 1, ap));
