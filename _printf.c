@@ -17,14 +17,15 @@ int check_for_modifier(const char *format)
 			c = *(format + i + 1);
 			if (c == 'b' || c == 'c' || c == 'd' || c == 'i'
 			|| c == 'o' || c == 'S' || c == 's' || c == 'u'
-			|| c == 'X' || c == 'x')
+			|| c == 'X' || c == 'x' || c == 'R' || c == 'r')
 				return (i + 1);
 			if (c == '%')
 			{
 				c = *(format + i + 2);
-				if (c == 'b' || c == 'c' || c == 'd' || c == 'i'
-				|| c == 'o' || c == 'S' || c == 's' || c == 'u'
-				|| c == 'X' || c == 'x')
+				if (c == 'b' || c == 'c' || c == 'd'
+				|| c == 'i' || c == 'o' || c == 'S'
+				|| c == 's' || c == 'u'	|| c == 'X'
+				|| c == 'x' || c == 'R' || c == 'r')
 					return (i + 2);
 				else
 					return (i + 1);
@@ -53,34 +54,23 @@ int _printf_count(const char *format, int count, va_list ap)
 	if (j >= 2)/*The string doesn't start whit he specifier*/
 		write(1, format, j - 1);
 	c = *(format + j);
-	if (c == 'b' || c == 'o' || c == 'u' || c == 'x' || c == 'X')
+	if (c == 'b' || c == 'o' || c == 'u' || c == 'x' || c == 'X'
+	|| c == 'S' || c == 's' || c == '%' || c == 'c')
 	{
-		i = print_in_base(va_arg(ap, unsigned int), *(format + j));
-		return (_printf_count(format + j + 1, count + j + i - 1, ap));
-	}
-	if (c == 'c')
-	{
-		_putchar(va_arg(ap, int));
-		return (_printf_count((format + j + 1), count + j, ap));
-	}
-	if (c == 'S')
-	{
-		i = _puts_special(va_arg(ap, char *));
-		return (_printf_count(format + j + 1, count + j + i - 1, ap));
-	}
-	if (c == 's')
-	{
-		i = _puts(va_arg(ap, char *));
-		return (_printf_count(format + j + 1, count + j + i - 1, ap));
-	}
-	if (c == '%')
-	{
-		_putchar('%');
-		return (_printf_count(format + j + 1, count + j, ap));
-	}
-	if (c == 'i' || c == 'd')
-	{
-		i = print_number(va_arg(ap, int));
+		if (c == 'c')
+			i = _putchar(va_arg(ap, int));
+		else if (c == 'S')
+			i = _puts_special(va_arg(ap, char *));
+		else if (c == 's')
+			i = _puts(va_arg(ap, char *));
+		else if (c == '%')
+			i = _putchar('%');
+		else if (c == 'i' || c == 'd')
+			i = print_number(va_arg(ap, int));
+		else if (c == 'r')
+			i = print_rev(va_arg(ap, char *));
+		else
+			i = print_in_base(va_arg(ap, unsigned int), *(format + j));
 		return (_printf_count(format + j + 1, count + j + i - 1, ap));
 	}
 	return (_printf_count((format + j), count + j, ap));
