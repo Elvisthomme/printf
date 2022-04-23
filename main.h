@@ -26,4 +26,5 @@ int _puts_special(const char *);
 int print_num_up_to_10(unsigned int, int, char);
 int print_rev(char *);
 int print_rot13(char *);
+int print_address(unsigned long int);
 #endif

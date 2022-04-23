@@ -17,7 +17,8 @@ int check_for_modifier(const char *format)
 			c = *(format + i + 1);
 			if (c == 'b' || c == 'c' || c == 'd' || c == 'i'
 			|| c == 'o' || c == 'S' || c == 's' || c == 'u'
-			|| c == 'X' || c == 'x' || c == 'R' || c == 'r')
+			|| c == 'X' || c == 'x' || c == 'R' || c == 'r'
+			|| c == 'p')
 				return (i + 1);
 			if (c == '%')
 			{
@@ -25,7 +26,8 @@ int check_for_modifier(const char *format)
 				if (c == 'b' || c == 'c' || c == 'd'
 				|| c == 'i' || c == 'o' || c == 'S'
 				|| c == 's' || c == 'u'	|| c == 'X'
-				|| c == 'x' || c == 'R' || c == 'r')
+				|| c == 'x' || c == 'R' || c == 'r'
+				|| c == 'p')
 					return (i + 2);
 				else
 					return (i + 1);
@@ -56,7 +58,7 @@ int _printf_count(const char *format, int count, va_list ap)
 	c = *(format + j);
 	if (c == 'b' || c == 'o' || c == 'u' || c == 'x' || c == 'X'
 	|| c == 'S' || c == 's' || c == '%' || c == 'c' || c == 'i'
-	|| c == 'd')
+	|| c == 'd' || c == 'p')
 	{
 		if (c == 'c')
 			i = _putchar(va_arg(ap, int));
@@ -72,6 +74,8 @@ int _printf_count(const char *format, int count, va_list ap)
 			i = print_rev(va_arg(ap, char *));
 		else if (c == 'R')
 			i = print_rot13(va_arg(ap, char *));
+		else if (c == 'p')
+			i = print_address(va_arg(ap, long int));
 		else
 			i = print_in_base(va_arg(ap, unsigned int), *(format + j));
 		return (_printf_count(format + j + 1, count + j + i - 1, ap));
@@ -93,7 +97,7 @@ int _printf(const char *format, ...)
 	if (!format)
 		return (-1);
 	if (*(format + 0) == '%' && !*(format + 1))
-		return (0);
+		return (1);
 	count = _printf_count(format, 0, ap);
 	va_end(ap);
 	return (count);

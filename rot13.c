@@ -16,5 +16,6 @@ int print_rot13(char *str)
 			*(str + i) = ((*(str + i) - 97 + 13) % 26) + 97;
 		i++;
 	}
-	return (_puts(str));
+	_puts(str);
+	return (i);
 }
