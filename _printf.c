@@ -94,13 +94,8 @@ int _printf(const char *format, ...)
 	int count;
 
 	va_start(ap, format);
-	if (!format)
+	if (!format || (*(format + 0) == '%' && !*(format + 1)))
 		return (-1);
-	if (*(format + 0) == '%' && !*(format + 1))
-	{
-		_putchar('%');
-		return (1);
-	}
 	count = _printf_count(format, 0, ap);
 	va_end(ap);
 	return (count);
