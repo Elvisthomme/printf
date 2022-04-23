@@ -13,7 +13,7 @@ int print_address(unsigned long int p)
 	for (i = 0; i < 12; i++)
 		c *= 16;
 	_puts("0x");
-	
+
 	while (p < c && p > 15)
 	{
 		_putchar('0');
